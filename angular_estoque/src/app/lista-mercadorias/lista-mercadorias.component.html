@@ -1,3 +1,14 @@
+
+<div class="row mb-3 mt-2">
+  <div class="col-md-8"></div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input class="form-control" type="text" [(ngModel)]="termoPesquisa" placeholder="Pesquisar Código ou Descrição" aria-label="Pesquisar">
+      <button class="btn btn-outline-success" (click)="pesquisar()">Pesquisar</button>
+    </div>
+  </div>
+</div>
+
 <table class="table">
   <thead class="thead-dark">
     <tr>

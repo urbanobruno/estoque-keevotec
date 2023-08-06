@@ -21,6 +21,10 @@ export class ListaMercadoriasComponent implements OnInit {
     unidade_medida: ''
   };
 
+  mercadoriasInicial: Mercadoria[] = [];
+
+  termoPesquisa: string = '';
+
   formEditarModal!: any;
 
   @ViewChild('formEditar') formEditar!: NgForm;
@@ -86,10 +90,27 @@ export class ListaMercadoriasComponent implements OnInit {
     this.mercadoriaService.listarMercadorias().subscribe(
       (data) => {
         this.mercadorias = data;
+        this.mercadoriasInicial = data;
       },
       (error) => {
         console.error(error);
       }
     );
   }
+
+  pesquisar() {
+    if (this.termoPesquisa.trim() !== '') {
+      // Filtrar as mercadorias com base no termo de pesquisa
+      this.mercadorias = this.mercadoriasInicial.filter(mercadoria => {
+        return (
+          mercadoria.codigo.toLowerCase().includes(this.termoPesquisa.toLowerCase()) ||
+          mercadoria.descricao.toLowerCase().includes(this.termoPesquisa.toLowerCase())
+        );
+      });
+    } else {
+      // Caso o termo de pesquisa esteja vazio, recarregar a lista de mercadorias
+      this.listarMercadorias();
+    }
+  }
+
 }
