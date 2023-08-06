@@ -1,0 +1,79 @@
+
+<!-- <div class="header">
+  <span>Estoque</span>
+  <button type="button" class="btn btn-primary" (click)="openModal()">Cadastrar Mercadoria</button>
+</div> -->
+
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Estoque</a>
+  <form class="form-inline">
+
+    <div class="input-group">
+      <input class="form-control" type="Pesquisar" placeholder="Pesquisar" aria-label="Pesquisar">
+      <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+      <button type="button" class="btn btn-primary" (click)="openModal()">Cadastrar Mercadoria</button>
+    </div>
+  </form>
+  <!-- <form class="form-inline">
+    <button class="btn btn-outline-success mr-3" type="button">Main button</button>
+    <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+  </form> -->
+</nav>
+
+
+<div class="modal fade" id="ModalMercadorias" tabindex="-1" role="dialog" aria-labelledby="LabelModalMercadoria" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="LabelModalMercadoria">Cadastrar Mercadoria</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" (ngSubmit)="cadastrar()">
+          <div class="form-group">
+            <label for="codigo" class="col-form-label">Código:</label>
+            <input type="text" id="codigo" name="codigo" [(ngModel)]="codigo" class="form-control" required maxlength="20"/>
+            <div *ngIf="form.controls['codigo'].touched && form.controls['codigo'].invalid" class="error-message mt-2">
+              Código é obrigatório e deve ter até 20 caracteres.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descricao" class="col-form-label">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" [(ngModel)]="descricao" class="form-control" required maxlength="50"/>
+            <div *ngIf="form.controls['descricao'].touched && form.controls['descricao'].invalid" class="error-message">
+              Descrição é obrigatória e deve ter até 50 caracteres.
+            </div>
+          
+          </div>
+
+          <div class="form-group">
+            <label for="quantidade" class="col-form-label">Quantidade Inicial:</label>
+            <input type="number" id="quantidade" name="quantidade" [(ngModel)]="quantidade" class="form-control" required min="0"/>
+            <div *ngIf="form.controls['quantidade'].touched && form.controls['quantidade'].invalid" class="error-message">
+              Quantidade é obrigatória e deve ser um número positivo.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="unidade_medida" class="col-form-label">Unidade de Medida:</label>
+            <input type="text" id="unidade_medida" name="unidade_medida" [(ngModel)]="unidade_medida" class="form-control" required maxlength="20"/>
+            <div *ngIf="form.controls['unidade_medida'].touched && form.controls['unidade_medida'].invalid" class="error-message">
+              Unidade de Medida é obrigatória e deve ter até 20 caracteres.
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Fechar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Cadastrar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

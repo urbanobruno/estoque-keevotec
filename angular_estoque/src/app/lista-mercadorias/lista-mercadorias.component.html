@@ -1,0 +1,80 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Quantidade</th>
+      <th scope="col">Unidade de Medida</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Excluir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let mercadoria of mercadorias; let even = even"
+      [ngClass]="{ 'even-row': even }"
+    >
+      <td>{{ mercadoria.codigo }}</td>
+      <td>{{ mercadoria.descricao }}</td>
+      <td>{{ mercadoria.quantidade }}</td>
+      <td>{{ mercadoria.unidade_medida }}</td>
+      <td><button class="btn btn-dark btn-sm" (click)="editarMercadoriaHandler(mercadoria)"><i class="bi bi-pencil"></i></button></td>
+      <td><button class="btn btn-danger btn-sm" (click)="deletarMercadoria(mercadoria.id)"><i class="bi bi-x"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="ModalEditarMercadoria" tabindex="-1" role="dialog" aria-labelledby="LabelModalEditarMercadoria" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="LabelModalEditarMercadoria">Editar Mercadoria</h5>
+        <button type="button" class="close" (click)="closeEditarModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #formEditar="ngForm" (ngSubmit)="editarRequest(mercadoriaSelecionada)">
+          <div class="form-group">
+            <label for="codigo" class="col-form-label">Código:</label>
+            <input type="text" id="codigo" name="codigo" [(ngModel)]="mercadoriaSelecionada.codigo" class="form-control" required maxlength="20"/>
+            <div *ngIf="formEditar.controls['codigo'].touched && formEditar.controls['codigo'].invalid" class="error-message mt-2">
+              Código é obrigatório e deve ter até 20 caracteres.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descricao" class="col-form-label">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" [(ngModel)]="mercadoriaSelecionada.descricao" class="form-control" required maxlength="50"/>
+            <div *ngIf="formEditar.controls['descricao'].touched && formEditar.controls['descricao'].invalid" class="error-message">
+              Descrição é obrigatória e deve ter até 50 caracteres.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="quantidade" class="col-form-label">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" [(ngModel)]="mercadoriaSelecionada.quantidade" class="form-control" required min="0"/>
+            <div *ngIf="formEditar.controls['quantidade'].touched && formEditar.controls['quantidade'].invalid" class="error-message">
+              Quantidade é obrigatória e deve ser um número positivo.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="unidade_medida" class="col-form-label">Unidade de Medida:</label>
+            <input type="text" id="unidade_medida" name="unidade_medida" [(ngModel)]="mercadoriaSelecionada.unidade_medida" class="form-control" required maxlength="20"/>
+            <div *ngIf="formEditar.controls['unidade_medida'].touched && formEditar.controls['unidade_medida'].invalid" class="error-message">
+              Unidade de Medida é obrigatória e deve ter até 20 caracteres.
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeEditarModal()">Fechar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formEditar.invalid">Editar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
