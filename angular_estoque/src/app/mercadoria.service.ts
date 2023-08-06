@@ -11,7 +11,7 @@ export class MercadoriaService {
   private apiUrlListar = 'http://localhost:8000/api/listar_mercadorias/'; 
   private apiUrlCadastro = 'http://localhost:8000/api/cadastrar_mercadoria/'; 
   private apiUrlEditar = 'http://localhost:8000/api/editar_mercadoria/'; 
-  private apiUrlExcluir = 'http://localhost:8000/api/deletar_mercadoria'; // TODO check
+  private apiUrlExcluir = 'http://localhost:8000/api/deletar_mercadoria';
 
   constructor(private http: HttpClient) { }
 

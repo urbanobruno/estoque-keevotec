@@ -56,7 +56,6 @@ export class CadastroMercadoriaComponent implements OnInit {
 
     this.mercadoriaService.cadastrarMercadoria(mercadoria).subscribe(
       (data) => {
-        console.log('Mercadoria cadastrada com sucesso!', data);
 
         // Emitir o evento após o sucesso do cadastro
         this.mercadoriaService.emitirEventoCadastro();

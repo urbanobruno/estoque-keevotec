@@ -14,9 +14,7 @@ def listar_mercadorias(request):
 
 @api_view(['POST'])
 def cadastrar_mercadoria(request):
-    print("Abrindo view")
     if request.method == 'POST':
-        print("chegou post")
         serializer = MercadoriaSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -26,7 +24,6 @@ def cadastrar_mercadoria(request):
 
 @api_view(['PUT'])
 def editar_mercadoria(request, mercadoria_id):
-    print(request.data)
     if request.method == 'PUT':
         mercadoria = Mercadoria.objects.get(id=mercadoria_id)
         serializer = MercadoriaSerializer(mercadoria, data=request.data)
