@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from config import DB_USER, DB_PASSWORD
+# from config import DB_PASSWORD, DB_USER
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'estoque_db',
-        'USER': DB_USER,          
-        'PASSWORD': DB_PASSWORD,        
+        'USER': 'root',          
+        'PASSWORD': 'bruno123',        
         'HOST': 'localhost',            
         'PORT': '3306',    
     }
