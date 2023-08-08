@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<div class="table-responsive-sm">
+<div class="table-responsive-sm" *ngIf="mercadorias.length; else semMercadorias">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -36,6 +36,16 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #semMercadorias>
+
+  <div class="container text-center mt-5">
+    <!-- Conteúdo a ser mostrado caso não tenha nenhuma mercadoria cadastrada -->
+    <h4 class="text-center font-weight-400">Ainda não existe nenhuma mercadoria cadastrada.</h4>
+
+
+  </div>
+</ng-template>
 
 <div class="modal fade" id="ModalEditarMercadoria" tabindex="-1" role="dialog" aria-labelledby="LabelModalEditarMercadoria" aria-hidden="true">
   <div class="modal-dialog" role="document">
